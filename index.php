@@ -188,30 +188,31 @@
                     <?php foreach ($clientes as $cliente) : ?>
                         <!-- Início: Cards -->
                         <div class="col">
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <label class="text-uppercase"><strong>Nome do Cliente:</strong></label>
-            <p class="card-text"><?= $cliente['nome']; ?></p>
-            <label class="text-uppercase"><strong>Telefone:</strong></label>
-            <?php
-            // Obter o telefone do cliente usando o ID do telefone na tabela cliente_telefone
-            $telefoneResult = $conn->query("SELECT telefone FROM cliente_telefone WHERE id_cliente_telefone = " . $cliente['id_cliente']);
-            $telefone = $telefoneResult->fetch_assoc()['telefone'];
-            ?>
-            <p class="card-text"><?= $telefone; ?></p>
-            <!-- Adicione outras informações do cliente aqui... -->
-            <div class="d-flex justify-content-between align-items-center mt-4">
-                <div class="btn-group">
-                    <a type="button" class="btn btn-sm btn-primary" href="edit.php?id=<?= $cliente['id_cliente']; ?>">Editar</a>
-                    <a type="button" class="btn btn-sm btn-danger" href="delete.php?id=<?= $cliente['id_cliente']; ?>">Excluir</a>
-                </div>
-                <small class="text-body-secondary"><?= "Cadastrado em " . $cliente['data_cadastro']; ?></small>
-            </div>
-        </div>
-    </div>
-</div>
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <label class="text-uppercase"><strong>Nome do Cliente:</strong></label>
+                                    <p class="card-text"><?= $cliente->getNome(); ?></p>
+                                    <label class="text-uppercase"><strong>Telefone:</strong></label>
+                                    <?php
+                                    // Obter o telefone do cliente usando o ID do telefone na tabela cliente_telefone
+                                    $telefoneResult = $conn->query("SELECT telefone FROM cliente_telefone WHERE id_cliente_telefone = " . $cliente->getTelefoneId());
+                                    $telefone = $telefoneResult->fetch_assoc()['telefone'];
+                                    ?>
+                                    <p class="card-text"><?= $telefone; ?></p>
+                                    <!-- Adicione outras informações do cliente aqui... -->
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <div class="btn-group">
+                                            <a type="button" class="btn btn-sm btn-primary" href="edit.php?id=<?= $cliente->getId(); ?>">Editar</a>
+                                            <a type="button" class="btn btn-sm btn-danger" href="delete.php?id=<?= $cliente->getId(); ?>">Excluir</a>
+                                        </div>
+                                        <small class="text-body-secondary"><?= "Cadastrado em " . $cliente->getDataCadastro(); ?></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Fim: Cards -->
                     <?php endforeach; ?>
+
 
 
 
